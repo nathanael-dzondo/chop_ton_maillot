@@ -19,6 +19,50 @@
         {% endif %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+  
+    <a class="navbar-brand" href="{{ path('app_home') }}">All4sport</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarScroll">
+
+      <!-- centre -->
+      <div class="nav-center">
+        <form action="{{ path('app_search') }}" method="GET" class="d-flex">
+          <input class="form-control me-2" type="search" name="s" placeholder="Search">
+          <button class="btn btn-outline-success" type="submit">Rechercher</button>
+        </form>
+      </div>
+
+      <!-- droite -->
+      <ul class="navbar-nav ms-auto order-lg-2">
+        <li class="nav-item d-flex align-items-center me-3">
+          {% if app.user %}
+            <a href="{{ path('app_logout') }}" class="btn btn-login">Déconnexion</a>
+          {% else %}
+            <a href="{{ path('app_login') }}" class="btn btn-login">Connexion</a>
+          {% endif %}
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <a href="{{ path('app_panier_index') }}" class="btn btn-panier">
+          <img src="{{ asset('uploads/produits/panier/pan3.png') }}" alt="basket" class="basket">
+          </a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <a href="{{ path('app_panier_historique') }}" class="btn btn-historique">
+          <img src="{{ asset('uploads/produits/panier/historique.webp') }}" alt="basket" class="basket">
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+                
+        {% endblock %}
     </body>
 </html>
